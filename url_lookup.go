@@ -1,16 +1,15 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net"
 	"net/http"
+	"os"
+	"path/filepath"
 
 	restful "github.com/emicklei/go-restful"
-)
-
-const (
-	hostNameAndPort            = "host-name-and-port"
-	originalPathAndQueryString = "original-path-and-query-string"
 )
 
 // URL defines a URL
@@ -25,39 +24,103 @@ type URLInfo struct {
 	Safe     bool   `json:"safe"`
 }
 
+// URLDBEntry defines a url record
+type URLDBEntry struct {
+	HostAndPort  string `json:"host"`
+	OriginalPath string `json:"path"`
+	Category     string `json:"category"`
+	Safe         bool   `json:"safe"`
+}
+
+// URLs defines a list of records
+type URLs struct {
+	// URLEntries contain all the url records
+	URLEntries []URLDBEntry `json:"urls"`
+}
+
 // URLDB stores URLs and their information
 type URLDB map[URL]*URLInfo
 
-var urldb URLDB
+type urlLookupServer struct {
+	httpPort     int
+	urlCfgPath   string
+	urlCachePath string
+	urldb        URLDB
+}
 
-func lookupURL(request *restful.Request, response *restful.Response) {
+const (
+	hostNameAndPort            = "host-name-and-port"
+	originalPathAndQueryString = "original-path-and-query-string"
+)
+
+var (
+	ulServer            *urlLookupServer
+	supportedExtensions = map[string]bool{
+		".json": true,
+	}
+	notFound = &URLInfo{
+		Category: "Unknown",
+		Safe:     false,
+	}
+)
+
+func (s *urlLookupServer) lookupURL(request *restful.Request, response *restful.Response) {
 	host := request.PathParameter(hostNameAndPort)
 	original := request.PathParameter(originalPathAndQueryString)
 
 	url := URL{hostAndPort: host, originalPath: original}
-	urlinfo := urldb[url]
-	fmt.Printf("urlinfo: %v\n", urlinfo)
+	urlinfo := s.urldb[url]
+	if urlinfo == nil {
+		urlinfo = notFound
+	}
 	if err := response.WriteEntity(urlinfo); err != nil {
 		fmt.Printf("Failed to write entry: %v", err)
 	}
 }
 
-func loadURLs() {
-	url1 := URL{hostAndPort: "www.terror.com:80", originalPath: "pipe-recipes"}
-	url1info := &URLInfo{Category: "terrorism", Safe: false}
-	url2 := URL{hostAndPort: "www.meet.com:80", originalPath: "findme"}
-	url2info := &URLInfo{Category: "social", Safe: true}
-	urldb[url1] = url1info
-	urldb[url2] = url2info
+func (s *urlLookupServer) loadURLs() error {
+	err := filepath.Walk(s.urlCfgPath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if !supportedExtensions[filepath.Ext(path)] || (info.Mode()&os.ModeType) != 0 {
+			return nil
+		}
+		data, err := ioutil.ReadFile(path)
+		if err != nil {
+			fmt.Printf("Failed to read %s: %v", path, err)
+			return err
+		}
+
+		var urls URLs
+		if e := json.Unmarshal(data, &urls); e != nil {
+			fmt.Printf("Failed to unmarshal %s: %v", path, err)
+		}
+
+		for _, urlinfo := range urls.URLEntries {
+			url := URL{hostAndPort: urlinfo.HostAndPort, originalPath: urlinfo.OriginalPath}
+			info := &URLInfo{Category: urlinfo.Category, Safe: urlinfo.Safe}
+			s.urldb[url] = info
+		}
+		return nil
+	})
+	return err
 }
 
 func newLookupServer(httpPort int, urlCfgPath, urlCachePath string, stop <-chan struct{}) error {
+	ulServer = &urlLookupServer{
+		httpPort:     httpPort,
+		urlCfgPath:   urlCfgPath,
+		urlCachePath: urlCachePath,
+		urldb:        make(URLDB),
+	}
+
 	container := restful.NewContainer()
 	ws := &restful.WebService{}
 	ws.Produces(restful.MIME_JSON)
 	ws.Route(ws.
 		GET(fmt.Sprintf("/urlinfo/1/{%s}/{%s}", hostNameAndPort, originalPathAndQueryString)).
-		To(lookupURL).
+		To(ulServer.lookupURL).
 		Doc("URL lookup service").
 		Param(ws.PathParameter(hostNameAndPort, "Host name and port as <host>:<port>").DataType("string")).
 		Param(ws.PathParameter(originalPathAndQueryString, "Original path and query string").DataType("string")))
@@ -71,18 +134,18 @@ func newLookupServer(httpPort int, urlCfgPath, urlCachePath string, stop <-chan 
 
 	listener, err := net.Listen("tcp", httpAddr)
 	if err != nil {
-		fmt.Printf("Listen to port 1688 failed: %v", httpPort)
+		fmt.Printf("Listen to port %v failed", httpPort)
 		return err
 	}
 
-	urldb = make(URLDB)
-	loadURLs()
+	if err := ulServer.loadURLs(); err != nil {
+		fmt.Printf("Failed to load URLs: %v", err)
+	}
+
 	go func() {
 		if err = httpServer.Serve(listener); err != nil {
 			fmt.Printf("Failed to serve request: %v", err)
 		}
-		<-stop
-		fmt.Println("Server exited")
 	}()
 	return nil
 }

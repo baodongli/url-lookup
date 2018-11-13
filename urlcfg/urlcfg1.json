@@ -1,0 +1,22 @@
+{
+    "urls": [
+        {
+            "host": "www.cnn.com:80",
+            "path": "news",
+            "category": "news",
+            "safe": true
+        },
+        {
+            "host": "www.terror.com:80",
+            "path": "bomb-recipe",
+            "category": "terrorism",
+            "safe": false
+        },
+        {
+            "host": "www.food.com:80",
+            "path": "recipes",
+            "category": "food",
+            "safe": true
+        }
+    ]
+}

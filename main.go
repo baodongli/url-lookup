@@ -20,6 +20,16 @@ var (
 		Long:  "URL lookup service returns URL information including if it's safe to open.",
 		Args:  cobra.ExactArgs(0),
 		RunE: func(c *cobra.Command, args []string) error {
+			if _, err := os.Stat(urlCfgPath); err != nil {
+				fmt.Printf("URL configuration path '%v': %v\n", urlCfgPath, err)
+				os.Exit(-1)
+			}
+
+			if _, err := os.Stat(urlCachePath); err != nil {
+				fmt.Printf("URL cache path '%v': %v\n", urlCachePath, err)
+				os.Exit(-1)
+			}
+
 			stop := make(chan struct{})
 			err := newLookupServer(httpPort, urlCfgPath, urlCachePath, stop)
 			waitSignal(stop)
@@ -46,6 +56,6 @@ func init() {
 func main() {
 	if err := lookupCmd.Execute(); err != nil {
 		fmt.Printf("Failed to start url lookup service: %v", err)
-		os.Exit(1)
+		os.Exit(-1)
 	}
 }
