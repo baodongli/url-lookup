@@ -17,6 +17,19 @@
             "path": "recipes",
             "category": "food",
             "safe": true
-        }
+        },
+        {
+            "host": "www.job.com:80",
+            "path": "all-jobs",
+            "category": "recruiter",
+            "safe": true
+        }, 
+        {
+            "host": "www.theater.com:80",
+            "path": "search-movie",
+            "category": "entertainment",
+            "safe": true
+        } 
+
     ]
 }

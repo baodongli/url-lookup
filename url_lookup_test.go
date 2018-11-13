@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"path/filepath"
+	"sync"
 	"testing"
 )
 
@@ -94,6 +95,7 @@ func TestLoadUrls(t *testing.T) {
 		urlCfgPath:   urlCfgPath,
 		urlCachePath: "",
 		urldb:        make(URLDB),
+		lock:         sync.Mutex{},
 	}
 
 	// Load the URLs
