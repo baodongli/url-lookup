@@ -4,9 +4,6 @@ import (
 	"fmt"
 	"net"
 	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
 
 	restful "github.com/emicklei/go-restful"
 )
@@ -33,13 +30,6 @@ type URLDB map[URL]*URLInfo
 
 var urldb URLDB
 
-func waitSignal(stop chan struct{}) {
-	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-	<-sigs
-	close(stop)
-}
-
 func lookupURL(request *restful.Request, response *restful.Response) {
 	host := request.PathParameter(hostNameAndPort)
 	original := request.PathParameter(originalPathAndQueryString)
@@ -61,7 +51,7 @@ func loadURLs() {
 	urldb[url2] = url2info
 }
 
-func main() {
+func newLookupServer(httpPort int, urlCfgPath, urlCachePath string, stop <-chan struct{}) error {
 	container := restful.NewContainer()
 	ws := &restful.WebService{}
 	ws.Produces(restful.MIME_JSON)
@@ -73,15 +63,16 @@ func main() {
 		Param(ws.PathParameter(originalPathAndQueryString, "Original path and query string").DataType("string")))
 	container.Add(ws)
 
+	httpAddr := fmt.Sprintf(":%v", httpPort)
 	httpServer := &http.Server{
-		Addr:    ":1688",
+		Addr:    httpAddr,
 		Handler: container,
 	}
 
-	listener, err := net.Listen("tcp", ":1688")
+	listener, err := net.Listen("tcp", httpAddr)
 	if err != nil {
-		fmt.Printf("Listen to port 1688 failed: %v", err)
-		os.Exit(1)
+		fmt.Printf("Listen to port 1688 failed: %v", httpPort)
+		return err
 	}
 
 	urldb = make(URLDB)
@@ -90,8 +81,8 @@ func main() {
 		if err = httpServer.Serve(listener); err != nil {
 			fmt.Printf("Failed to serve request: %v", err)
 		}
+		<-stop
+		fmt.Println("Server exited")
 	}()
-
-	stop := make(chan struct{})
-	waitSignal(stop)
+	return nil
 }
