@@ -70,7 +70,7 @@ type bucket struct {
 	fileName string
 }
 
-// URLHashTbl is a hash table which each bucket contains a map of URLs
+// URLHashTbl is a hash table in which each bucket contains a map of URLs
 type URLHashTbl [hashTableSize]bucket
 
 type urlLookupServer struct {

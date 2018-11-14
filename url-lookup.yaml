@@ -1,0 +1,81 @@
+apiVersion: v1
+data:
+  urlcfg1.json: "{\n    \"urls\": [\n        {\n            \"host\": \"www.cnn.com:80\",\n
+    \           \"path\": \"news\",\n            \"category\": \"news\",\n            \"safe\":
+    true\n        },\n        {\n            \"host\": \"www.terror.com:80\",\n            \"path\":
+    \"bomb-recipe\",\n            \"category\": \"terrorism\",\n            \"safe\":
+    false\n        },\n        {\n            \"host\": \"www.food.com:80\",\n            \"path\":
+    \"recipes\",\n            \"category\": \"food\",\n            \"safe\": true\n
+    \       },\n        {\n            \"host\": \"www.job.com:80\",\n            \"path\":
+    \"all-jobs\",\n            \"category\": \"recruiter\",\n            \"safe\":
+    true\n        }, \n        {\n            \"host\": \"www.theater.com:80\",\n
+    \           \"path\": \"search-movie\",\n            \"category\": \"entertainment\",\n
+    \           \"safe\": true\n        },\n        {\n            \"host\": \"www.linkedin.com:80\",\n
+    \           \"path\": \"profile\",\n            \"category\": \"job search\",\n
+    \           \"safe\": true\n        },\n        {\n            \"host\": \"www.cisco.com:80\",\n
+    \           \"path\": \"home.html\",\n            \"category\": \"high-tech\",\n
+    \           \"safe\": true\n        },\n        {\n            \"host\": \"www.juniper.com:80\",\n
+    \           \"path\": \"home.html\",\n            \"category\": \"high-tech\",\n
+    \           \"safe\": true\n        },\n        {\n            \"host\": \"www.abc.com:80\",\n
+    \           \"path\": \"channels\",\n            \"category\": \"media\",\n            \"safe\":
+    true\n        },\n        {\n            \"host\": \"www.angieslist.com:80\",\n
+    \           \"path\": \"find-contractors\",\n            \"category\": \"contractors\",\n
+    \           \"safe\": true\n        },\n        {\n            \"host\": \"www.facebook.com:80\",\n
+    \           \"path\": \"profile\",\n            \"category\": \"social media\",\n
+    \           \"safe\": true\n        } \n    ]\n}\n"
+  urlcfg2.json: '{"urls":[{"host":"www.espn.com:80","path":"programming","category":"sports","safe":true},{"host":"www.fun.com:80","path":"movies","category":"violence","safe":false},{"host":"www.furniture.com:80","path":"all-styles","category":"shopping","safe":true},{"host":"www.rebellion.com:80","path":"strategies","category":"violence","safe":false}]}'
+  urlcfg3.json: '{"urls":[{"host":"diaryofagameaddict.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"espdesign.com.au:80","path":"pattern","category":"bad-site","safe":false},{"host":"iamagameaddict.com:80","path":"addiction","category":"bad-site","safe":false},{"host":"kalantzis.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"slightlyoffcenter.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"toddscarwash.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"tubemoviez.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"ipl.hk:80","path":"index.html","category":"bad-site","safe":false},{"host":"crackspider.us:80","path":"toolbar","category":"bad-site","safe":false},{"host":"pos-kupang.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"rupor.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"svision-online.de:80","path":"mgfi","category":"bad-site","safe":false},{"host":"officeon.ch.ma:80","path":"office.js","category":"bad-site","safe":false},{"host":"sn-gzzx.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"sunlux.net:80","path":"company","category":"bad-site","safe":false},{"host":"outporn.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"timothycopus.aimoo.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"xindalawyer.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"freeserials.spb.ru:80","path":"68703.htm","category":"bad-site","safe":false},{"host":"deletespyware-adware.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"orbowlada.strefa.pl:80","path":"text396.htm","category":"bad-site","safe":false},{"host":"ruiyangcn.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"zkic.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"adserving.favorit-network.com:80","path":"eas","category":"bad-site","safe":false},{"host":"cracks.vg:80","path":"d1.php","category":"bad-site","safe":false},{"host":"juicypussyclips.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"nuptialimages.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"andysgame.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"bezproudoff.cz:80","path":"index.html","category":"bad-site","safe":false},{"host":"ceskarepublika.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"hotspot.cz:80","path":"index.html","category":"bad-site","safe":false},{"host":"gmcjjh.org:80","path":"DHL","category":"bad-site","safe":false},{"host":"nerez-schodiste-zabradli.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"nordiccountry.cz:80","path":"index.html","category":"bad-site","safe":false},{"host":"nowina.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"obada-konstruktiwa.org:80","path":"index.html","category":"bad-site","safe":false},{"host":"otylkaaotesanek.cz:80","path":"index.html","category":"bad-site","safe":false},{"host":"pb-webdesign.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"pension-helene.cz:80","path":"index.html","category":"bad-site","safe":false},{"host":"podzemi.myotis.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"smrcek.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"spekband.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"m2132.ehgaugysd.net:80","path":"zyso.cgi","category":"bad-site","safe":false},{"host":"webcom-software.ws:80","path":"links","category":"bad-site","safe":false},{"host":"worldgymperu.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"zgsysz.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"oknarai.ru:80","path":"index.html","category":"bad-site","safe":false},{"host":"realinnovation.com:80","path":"css","category":"bad-site","safe":false},{"host":"hardcorepornparty.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"zous.szm.sk:80","path":"index.html","category":"bad-site","safe":false},{"host":"noveslovo.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"dimsnetwork.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckyblank.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckyclean.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckyclear.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckyeffect.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckyhalo.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckypure.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckyshine.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckysuccess.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckysure.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"luckytidy.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"nudebeachgalleries.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"buffalogoesout.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"achren.org:80","path":"index.html","category":"bad-site","safe":false},{"host":"associatesexports.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"antalya.ru:80","path":"links","category":"bad-site","safe":false},{"host":"conds.ru:80","path":"index.html","category":"bad-site","safe":false},{"host":"img001.com:80","path":"business","category":"bad-site","safe":false},{"host":"unalbilgisayar.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"soundcomputers.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"t-sb.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"hanulsms.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"semengineers.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"srslogisticts.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"tendersource.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"traff1.com:80","path":"in.cgi","category":"bad-site","safe":false},{"host":"web-olymp.ru:80","path":"index.html","category":"bad-site","safe":false},{"host":"oprahsearch.com:80","path":"scripts","category":"bad-site","safe":false},{"host":"oprahsearch.com:80","path":"scripts","category":"bad-site","safe":false},{"host":"rl8vd.kikul.com:80","path":"ci7ka5t2ue","category":"bad-site","safe":false},{"host":"sbnc.hak.su:80","path":"spread.txt","category":"bad-site","safe":false},{"host":"somnoy.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"incoctel.cl:80","path":"8RHFBgK4.php","category":"bad-site","safe":false},{"host":"incoctel.cl:80","path":"8RHFBgK4.php","category":"bad-site","safe":false},{"host":"westlifego.com:80","path":"jquery-1.3.2.min.js","category":"bad-site","safe":false},{"host":"westlifego.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"nadegda-95.ru:80","path":"index.html","category":"bad-site","safe":false},{"host":"romsigmed.ro:80","path":"index.html","category":"bad-site","safe":false},{"host":"spatsz.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"svetyivanrilski.com:80","path":"index.html","category":"bad-site","safe":false},{"host":"titon.info:80","path":"index.html","category":"bad-site","safe":false},{"host":"tophostbg.net:80","path":"index.html","category":"bad-site","safe":false},{"host":"vivaweb.org:80","path":"index.html","category":"bad-site","safe":false},{"host":"vocational-training.us:80","path":"index.html","category":"bad-site","safe":false},{"host":"warco.pl:80","path":"index.html","category":"bad-site","safe":false},{"host":"bde.be:80","path":"index.html","category":"bad-site","safe":false},{"host":"pwvita.pl:80","path":"index.html","category":"bad-site","safe":false},{"host":"roks.ua:80","path":"index.html","category":"bad-site","safe":false},{"host":"skgroup.kiev.ua:80","path":"index.html","category":"bad-site","safe":false}]}'
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2018-11-14T15:44:32Z
+  name: urlcfg
+  namespace: default
+  resourceVersion: "2537573"
+  selfLink: /api/v1/namespaces/default/configmaps/urlcfg
+  uid: 2e3602ef-e824-11e8-b9ae-fa163e73f0a5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: url-lookup
+  labels:
+    app: url-lookup
+spec:
+  ports:
+  - port: 16888
+    name: http
+  selector:
+    app: url-lookup
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: url-lookup
+  labels:
+    app: url-lookup
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: url-lookup
+    spec:
+      containers:
+      - name: url-lookup
+        image: "docker.io/baodongli/url-lookup:url"
+        imagePullPolicy: Always
+        args:
+          - --port
+          - "16888"
+          - --url-cache-path
+          - /run/url-cache
+          - --url-config-path
+          - /opt/url-cfg
+        volumeMounts:
+        - mountPath: /opt/url-cfg
+          name: urlcfg-vol
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: urlcfg
+        name: urlcfg-vol
