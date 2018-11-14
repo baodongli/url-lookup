@@ -29,7 +29,42 @@
             "path": "search-movie",
             "category": "entertainment",
             "safe": true
+        },
+        {
+            "host": "www.linkedin.com:80",
+            "path": "profile",
+            "category": "job search",
+            "safe": true
+        },
+        {
+            "host": "www.cisco.com:80",
+            "path": "home.html",
+            "category": "high-tech",
+            "safe": true
+        },
+        {
+            "host": "www.juniper.com:80",
+            "path": "home.html",
+            "category": "high-tech",
+            "safe": true
+        },
+        {
+            "host": "www.abc.com:80",
+            "path": "channels",
+            "category": "media",
+            "safe": true
+        },
+        {
+            "host": "www.angieslist.com:80",
+            "path": "find-contractors",
+            "category": "contractors",
+            "safe": true
+        },
+        {
+            "host": "www.facebook.com:80",
+            "path": "profile",
+            "category": "social media",
+            "safe": true
         } 
-
     ]
 }
